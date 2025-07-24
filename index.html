@@ -3,50 +3,74 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SmartDomus - Domotica con Home Assistant</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>SmartDomus</h1>
-    <p>Installazione e automazione con Home Assistant</p>
-    <a href="#contatti" class="btn">Contattami</a>
+  <nav>
+    <div class="container">
+      <h1>SmartDomus</h1>
+      <a href="#contatti" class="nav-btn">Contattami</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <h2>La tua casa, intelligente davvero</h2>
+      <p>Installazione, automazione e supporto completo con Home Assistant.</p>
+      <a href="#servizi" class="btn">Scopri i servizi</a>
+    </div>
   </header>
 
-  <section class="servizi">
-    <h2>Cosa Offriamo</h2>
-    <ul>
-      <li><strong>Installazione Home Assistant</strong> su Raspberry Pi, mini PC o NAS</li>
-      <li><strong>Integrazione dispositivi smart</strong>: luci, sensori, prese, Alexa, Google</li>
-      <li><strong>Automazioni intelligenti</strong> su misura per la tua casa</li>
-      <li><strong>Manutenzione e supporto remoto</strong> con backup e aggiornamenti</li>
-    </ul>
+  <section id="servizi" class="section">
+    <div class="container">
+      <h2>Cosa Offriamo</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>🔧 Installazione</h3>
+          <p>Ti aiutiamo a scegliere e configurare Home Assistant su misura per te.</p>
+        </div>
+        <div class="card">
+          <h3>⚙️ Integrazione</h3>
+          <p>Luci, prese, sensori, Alexa, Google... tutto connesso e sotto controllo.</p>
+        </div>
+        <div class="card">
+          <h3>🤖 Automazioni</h3>
+          <p>Automazioni intelligenti e personalizzate per comfort, sicurezza ed efficienza.</p>
+        </div>
+        <div class="card">
+          <h3>🛠️ Supporto</h3>
+          <p>Manutenzione, backup, aggiornamenti e assistenza remota continuativa.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="clienti">
-    <h2>Per Chi è Pensato</h2>
-    <p>Privati, famiglie, B&B o piccole attività: rendi la tua casa o struttura più efficiente, sicura e moderna.</p>
+  <section class="section alt">
+    <div class="container">
+      <h2>Perché SmartDomus?</h2>
+      <ul>
+        <li>✅ Esperienza reale con Home Assistant, Zigbee, MQTT</li>
+        <li>✅ Soluzioni su misura, senza cloud obbligatori</li>
+        <li>✅ Supporto semplice e umano, in italiano</li>
+      </ul>
+    </div>
   </section>
 
-  <section class="perche">
-    <h2>Perché scegliere SmartDomus</h2>
-    <ul>
-      <li>Esperienza reale con Home Assistant, Zigbee, MQTT</li>
-      <li>Soluzioni personalizzate, senza cloud esterni obbligatori</li>
-      <li>Supporto semplice e in italiano</li>
-    </ul>
-  </section>
-
-  <section id="contatti" class="contatti">
-    <h2>Contattami</h2>
-    <p>📧 <a href="mailto:info@smartdomus.it">info@smartdomus.it</a></p>
-    <p>📱 <a href="https://wa.me/393331234567" target="_blank">WhatsApp: +39 333 123 4567</a></p>
-    <p>📍 Operativi in tutta Italia (anche da remoto)</p>
+  <section id="contatti" class="section">
+    <div class="container">
+      <h2>Contattami</h2>
+      <p>📧 <a href="mailto:info@smartdomus.it">info@smartdomus.it</a></p>
+      <p>📱 <a href="https://wa.me/393331234567" target="_blank">WhatsApp: +39 333 123 4567</a></p>
+      <p>📍 Operiamo in tutta Italia (anche da remoto)</p>
+    </div>
   </section>
 
   <footer>
-    <p>© 2025 SmartDomus – Domotica su misura</p>
+    <div class="container">
+      <p>© 2025 SmartDomus – Domotica su misura con Home Assistant</p>
+    </div>
   </footer>
 </body>
 </html>
