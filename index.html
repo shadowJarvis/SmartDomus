@@ -1,117 +1,94 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartDomus - Automazione con Home Assistant</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <div class="container">
-      <h1>SmartDomus</h1>
-      <p>Automazione e comfort con Home Assistant</p>
-    </div>
-  </header>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background: #f9f9f9;
+}
 
-  <section id="hero" class="hero">
-    <div class="container">
-      <h2>Rendi la tua casa intelligente</h2>
-      <p>Installazione e manutenzione professionale di Home Assistant</p>
-      <a href="#contatti" class="btn">Contattami</a>
-    </div>
-  </section>
+header {
+  background: #41bdf5;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
 
-  <section id="gallery" class="section gallery">
-    <div class="container">
-      <h2>Galleria</h2>
-      <div class="carousel">
-        <div class="slides">
-          <img src="images/slide1.jpg" alt="Smart Home 1">
-          <img src="images/slide2.jpg" alt="Smart Home 2">
-          <img src="images/slide3.jpg" alt="Smart Home 3">
-        </div>
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
-      </div>
-    </div>
-  </section>
+.hero {
+  background: #eaf7fd;
+  padding: 4rem 2rem;
+  text-align: center;
+}
 
-  <section id="contatti" class="section contact">
-    <div class="container">
-      <h2>Contattami</h2>
-      <form id="contactForm">
-        <input type="text" id="name" placeholder="Il tuo nome" required>
-        <input type="email" id="email" placeholder="La tua email" required>
-        <textarea id="message" placeholder="Il tuo messaggio" required></textarea>
-        <button type="submit">Invia su Telegram</button>
-      </form>
-      <p id="formStatus"></p>
-    </div>
-  </section>
+.hero .btn {
+  background: #41bdf5;
+  color: white;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border-radius: 5px;
+}
 
-  <footer>
-    <p>&copy; 2025 SmartDomus - Tutti i diritti riservati</p>
-  </footer>
+.section {
+  padding: 3rem 2rem;
+  text-align: center;
+}
 
-<script>
-  // Carousel
-  let currentIndex = 0;
-  const slides = document.querySelectorAll(".slides img");
-  const totalSlides = slides.length;
+.carousel {
+  position: relative;
+  max-width: 600px;
+  margin: auto;
+}
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.style.display = i === index ? "block" : "none";
-    });
-  }
+.slides img {
+  display: none;
+  width: 100%;
+  border-radius: 10px;
+}
 
-  document.querySelector(".prev").addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-    showSlide(currentIndex);
-  });
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+}
 
-  document.querySelector(".next").addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    showSlide(currentIndex);
-  });
+.prev { left: 10px; }
+.next { right: 10px; }
 
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    showSlide(currentIndex);
-  }, 4000);
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+  margin: auto;
+}
 
-  showSlide(currentIndex);
+input, textarea {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-  // Telegram form
-  const BOT_TOKEN = "INSERISCI_IL_TUO_BOT_TOKEN";
-  const CHAT_ID = "INSERISCI_IL_TUO_CHAT_ID";
+button {
+  padding: 1rem;
+  background: #41bdf5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
-  document.getElementById("contactForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
+button:hover {
+  background: #359fc4;
+}
 
-    const text = `📩 Nuovo messaggio dal sito SmartDomus\n👤 Nome: ${name}\n📧 Email: ${email}\n💬 Messaggio: ${message}`;
-
-    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: CHAT_ID, text: text })
-    })
-    .then(res => {
-      if (res.ok) {
-        document.getElementById("formStatus").innerText = "✅ Messaggio inviato con successo!";
-        document.getElementById("contactForm").reset();
-      } else {
-        document.getElementById("formStatus").innerText = "❌ Errore nell'invio!";
-      }
-    })
-    .catch(() => {
-      document.getElementById("formStatus").innerText = "⚠️ Errore di connessione!";
-    });
-  });
-</script>
-</body>
-</html>
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
