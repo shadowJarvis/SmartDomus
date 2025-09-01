@@ -125,3 +125,23 @@ footer {
     padding: 15px;
     margin-top: 20px;
 }
+
+.telegram-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #229ED9; /* colore ufficiale Telegram */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 9999;
+}
+
+.telegram-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+}
