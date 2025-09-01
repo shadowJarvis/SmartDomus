@@ -1,56 +1,117 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SmartDomus - Home Assistant per la tua casa</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartDomus - Automazione con Home Assistant</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>SmartDomus</h1>
-    <p>Automazione domestica semplice, sicura e su misura con Home Assistant</p>
+    <div class="container">
+      <h1>SmartDomus</h1>
+      <p>Automazione e comfort con Home Assistant</p>
+    </div>
   </header>
 
-  <section class="services">
-    <h2>Cosa offriamo</h2>
-    <ul>
-      <li>📦 Installazione Home Assistant su misura</li>
-      <li>🛠️ Integrazione dispositivi Zigbee, WiFi, MQTT</li>
-      <li>🔒 Configurazione accessi remoti e backup</li>
-      <li>🧠 Automazioni intelligenti per la tua casa</li>
-    </ul>
-  </section>
-
-  <section class="faq">
-    <h2>Domande frequenti</h2>
-    <div class="faq-item">
-      <strong>Serve una connessione Internet sempre attiva?</strong>
-      <p>No, Home Assistant funziona anche offline. La connessione serve solo per il controllo da remoto.</p>
-    </div>
-    <div class="faq-item">
-      <strong>Posso usare dispositivi esistenti?</strong>
-      <p>Sì, possiamo integrare la maggior parte dei dispositivi già in tuo possesso.</p>
+  <section id="hero" class="hero">
+    <div class="container">
+      <h2>Rendi la tua casa intelligente</h2>
+      <p>Installazione e manutenzione professionale di Home Assistant</p>
+      <a href="#contatti" class="btn">Contattami</a>
     </div>
   </section>
 
-  <section class="contact">
-    <h2>Contattaci</h2>
-    <form>
-      <label for="name">Nome:</label><br />
-      <input type="text" id="name" name="name" required /><br />
-      <label for="email">Email:</label><br />
-      <input type="email" id="email" name="email" required /><br />
-      <label for="message">Messaggio:</label><br />
-      <textarea id="message" name="message" rows="4" required></textarea><br />
-      <button type="submit">Invia</button>
-    </form>
-    <p><em>(Il modulo è dimostrativo: per attivarlo serve un backend)</em></p>
+  <section id="gallery" class="section gallery">
+    <div class="container">
+      <h2>Galleria</h2>
+      <div class="carousel">
+        <div class="slides">
+          <img src="images/slide1.jpg" alt="Smart Home 1">
+          <img src="images/slide2.jpg" alt="Smart Home 2">
+          <img src="images/slide3.jpg" alt="Smart Home 3">
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contatti" class="section contact">
+    <div class="container">
+      <h2>Contattami</h2>
+      <form id="contactForm">
+        <input type="text" id="name" placeholder="Il tuo nome" required>
+        <input type="email" id="email" placeholder="La tua email" required>
+        <textarea id="message" placeholder="Il tuo messaggio" required></textarea>
+        <button type="submit">Invia su Telegram</button>
+      </form>
+      <p id="formStatus"></p>
+    </div>
   </section>
 
   <footer>
-    <p>© 2025 SmartDomus - Tutti i diritti riservati</p>
+    <p>&copy; 2025 SmartDomus - Tutti i diritti riservati</p>
   </footer>
+
+<script>
+  // Carousel
+  let currentIndex = 0;
+  const slides = document.querySelectorAll(".slides img");
+  const totalSlides = slides.length;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.display = i === index ? "block" : "none";
+    });
+  }
+
+  document.querySelector(".prev").addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    showSlide(currentIndex);
+  });
+
+  document.querySelector(".next").addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    showSlide(currentIndex);
+  });
+
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    showSlide(currentIndex);
+  }, 4000);
+
+  showSlide(currentIndex);
+
+  // Telegram form
+  const BOT_TOKEN = "INSERISCI_IL_TUO_BOT_TOKEN";
+  const CHAT_ID = "INSERISCI_IL_TUO_CHAT_ID";
+
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    const text = `📩 Nuovo messaggio dal sito SmartDomus\n👤 Nome: ${name}\n📧 Email: ${email}\n💬 Messaggio: ${message}`;
+
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: CHAT_ID, text: text })
+    })
+    .then(res => {
+      if (res.ok) {
+        document.getElementById("formStatus").innerText = "✅ Messaggio inviato con successo!";
+        document.getElementById("contactForm").reset();
+      } else {
+        document.getElementById("formStatus").innerText = "❌ Errore nell'invio!";
+      }
+    })
+    .catch(() => {
+      document.getElementById("formStatus").innerText = "⚠️ Errore di connessione!";
+    });
+  });
+</script>
 </body>
 </html>
